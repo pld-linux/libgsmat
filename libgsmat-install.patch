@@ -1,0 +1,13 @@
+--- libgsmat-0.0.2/Makefile~	2006-11-14 15:22:16.000000000 +0100
++++ libgsmat-0.0.2/Makefile	2007-12-30 23:50:37.000000000 +0100
+@@ -60,10 +60,7 @@
+ 	mkdir -p $(INSTALL_PREFIX)/usr/include
+ 	install -m 644 libgsmat.h $(INSTALL_PREFIX)/usr/include
+ 	install -m 755 $(DYNAMIC_LIBRARY) $(INSTALL_PREFIX)/usr/lib
+-	if [ -x /usr/sbin/sestatus ] && ( /usr/sbin/sestatus | grep "SELinux status:" | grep -q "enabled"); then  restorecon -v $(INSTALL_PREFIX)/$(INSTALL_BASE)/lib/$(DYNAMIC_LIBRARY); fi
+-	( cd $(INSTALL_PREFIX)/usr/lib ; ln -sf libgsmat.so.1 libgsmat.so )
+ 	install -m 644 $(STATIC_LIBRARY) $(INSTALL_PREFIX)/usr/lib
+-	/sbin/ldconfig
+ 
+ uninstall:
+ 	@echo "Removing Libpri"
