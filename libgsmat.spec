@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Implementacja standardu GSM 07.07
 Name:		libgsmat
 Version:	0.0.2
 Release:	0.1
-License:	GPL
+License:	GPL v2+
 Group:		Libraries
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	5d2458d8521e6b2e664ea7570964cf5c
@@ -49,15 +49,16 @@ chmod u+x mkdep
 
 %build
 %{__make} \
-	CC="%{__cc}"
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
-%{__make} install \
-	INSTALL_PREFIX=$RPM_BUILD_ROOT
-
-install %{name}.so $RPM_BUILD_ROOT%{_libdir}
+cp -a libgsmat.so* $RPM_BUILD_ROOT%{_libdir}
+install libgsmat.a $RPM_BUILD_ROOT%{_libdir}
+install libgsmat.h $RPM_BUILD_ROOT%{_includedir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -67,14 +68,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README TODO
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%doc README TODO
+%attr(755,root,root) %{_libdir}/libgsmat.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgsmat.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libgsmat.so
 %{_includedir}/%{name}.h
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libgsmat.a
