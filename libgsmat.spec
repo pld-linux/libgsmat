@@ -2,7 +2,7 @@ Summary:	An implementation of GSM 07.07
 Summary(pl.UTF-8):	Implementacja standardu GSM 07.07
 Name:		libgsmat
 Version:	0.0.2
-Release:	0.1
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	%{name}-%{version}.tar.bz2
