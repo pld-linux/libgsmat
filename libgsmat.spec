@@ -1,14 +1,13 @@
 Summary:	An implementation of GSM 07.07
 Summary(pl.UTF-8):	Implementacja standardu GSM 07.07
 Name:		libgsmat
-Version:	0.0.2
+Version:	0.0.4
 Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	5d2458d8521e6b2e664ea7570964cf5c
+Source0:	http://212.91.251.199/~junghanns.net/downloads/bristuff-0.4.0-RC3b.tar.gz
+# Source0-md5:	ac9b76a09b4ea1a70f243c31d817a393
 Patch0:		%{name}-install.patch
-# from bristuff-*.tar.gz 
 URL:		http://212.91.251.199/~junghanns.net/downloads/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -43,16 +42,21 @@ Static libgsmat library.
 Statyczna biblioteka libgsmat.
 
 %prep
-%setup -q
+%setup -q -n bristuff-0.4.0-RC3b
+cd %{name}-%{version}
 %patch0 -p1
+
 chmod u+x mkdep
 
 %build
+cd %{name}-%{version}
 %{__make} \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}"
 
 %install
+cd %{name}-%{version}
+
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
@@ -68,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README TODO
+%doc %{name}-%{version}/{README,TODO}
 %attr(755,root,root) %{_libdir}/libgsmat.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgsmat.so.1
 
