@@ -55,11 +55,10 @@ cd %{name}-%{version}
 	CFLAGS="%{rpmcflags}"
 
 %install
-cd %{name}-%{version}
-
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
+cd %{name}-%{version}
 cp -a libgsmat.so* $RPM_BUILD_ROOT%{_libdir}
 install libgsmat.a $RPM_BUILD_ROOT%{_libdir}
 install libgsmat.h $RPM_BUILD_ROOT%{_includedir}
