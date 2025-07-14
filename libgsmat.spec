@@ -44,7 +44,7 @@ Statyczna biblioteka libgsmat.
 %prep
 %setup -q -n bristuff-0.4.0-RC3b
 cd %{name}-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 chmod u+x mkdep
 
