@@ -2,7 +2,7 @@ Summary:	An implementation of GSM 07.07
 Summary(pl.UTF-8):	Implementacja standardu GSM 07.07
 Name:		libgsmat
 Version:	0.0.4
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://212.91.251.199/~junghanns.net/downloads/bristuff-0.4.0-RC3b.tar.gz
